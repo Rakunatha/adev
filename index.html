@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-Driven Judicial Process Survey - India</title>
+    <title>Moltbots and Digital Rights Survey - India</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
@@ -16,7 +16,7 @@
 ```
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #fff5e6 0%, #e6f7e6 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         padding: 20px;
         min-height: 100vh;
     }
@@ -26,12 +26,12 @@
         margin: 0 auto;
         background: white;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
         overflow: hidden;
     }
 
     .header {
-        background: linear-gradient(135deg, #ff9933 0%, #138808 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         padding: 40px;
         text-align: center;
@@ -52,8 +52,8 @@
     }
 
     .info-box {
-        background: #e3f2fd;
-        border-left: 4px solid #2196F3;
+        background: #e8eaf6;
+        border-left: 4px solid #5e35b1;
         padding: 15px;
         margin-bottom: 30px;
         border-radius: 4px;
@@ -69,7 +69,7 @@
     }
 
     .section-number {
-        background: #ff9933;
+        background: #667eea;
         color: white;
         width: 35px;
         height: 35px;
@@ -105,7 +105,7 @@
     .form-group select:focus,
     .form-group input:focus {
         outline: none;
-        border-color: #ff9933;
+        border-color: #667eea;
     }
 
     .question-box {
@@ -113,7 +113,7 @@
         padding: 25px;
         margin-bottom: 25px;
         border-radius: 8px;
-        border-left: 4px solid #ff9933;
+        border-left: 4px solid #667eea;
     }
 
     .question-text {
@@ -140,7 +140,7 @@
     }
 
     .radio-option:hover {
-        background: #f0f0f0;
+        background: #e8eaf6;
     }
 
     .radio-option input[type="radio"] {
@@ -148,10 +148,11 @@
         height: 18px;
         margin-right: 12px;
         cursor: pointer;
+        accent-color: #667eea;
     }
 
     .submit-btn {
-        background: linear-gradient(135deg, #ff9933 0%, #138808 100%);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         padding: 15px 40px;
         border: none;
@@ -210,7 +211,7 @@
 
     .total-responses {
         font-size: 20px;
-        color: #ff9933;
+        color: #667eea;
         font-weight: bold;
         margin-top: 10px;
     }
@@ -231,7 +232,7 @@
     }
 
     .clear-btn {
-        background: #ff9933;
+        background: #667eea;
         color: white;
         padding: 12px 30px;
         border: none;
@@ -243,7 +244,7 @@
     }
 
     .clear-btn:hover {
-        background: #e68a2e;
+        background: #5568d3;
     }
 
     .error {
@@ -253,6 +254,21 @@
     .hidden {
         display: none;
     }
+
+    .definition-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        margin-bottom: 25px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .definition-box strong {
+        display: block;
+        margin-bottom: 5px;
+        color: #856404;
+    }
 </style>
 ```
 
@@ -260,15 +276,20 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>AI-Driven Judicial Process in India</h1>
-            <p>A Study on Judicial System Implementation - Public Opinion Survey</p>
+            <h1>Moltbots and the Public</h1>
+            <p>A Study on Awareness, Accountability, and Digital Rights in India</p>
         </div>
 
 ```
     <div id="formScreen" class="content">
         <div class="info-box">
-            <strong>Note:</strong> This survey collects public opinion on implementing AI technology in the Indian judicial system. 
-            All responses are anonymous. Please answer all questions honestly.
+            <strong>Note:</strong> This survey collects public opinion on Moltbots (social media bots) and their impact on digital rights in India. 
+            All responses are anonymous and confidential. Please answer all questions honestly.
+        </div>
+
+        <div class="definition-box">
+            <strong>What are Moltbots?</strong>
+            Moltbots are automated social media accounts (bots) that can spread information, manipulate opinions, and influence public discourse on platforms like Twitter, Facebook, and Instagram.
         </div>
 
         <div class="section-title">
@@ -304,13 +325,15 @@
             <label>Occupation *</label>
             <select id="occupation">
                 <option value="">Select occupation</option>
-                <option value="Legal Professional">Legal Professional (Lawyer/Judge)</option>
+                <option value="Student">Student</option>
+                <option value="IT/Tech Professional">IT/Tech Professional</option>
+                <option value="Media/Journalism">Media/Journalism</option>
                 <option value="Government Employee">Government Employee</option>
                 <option value="Private Sector Employee">Private Sector Employee</option>
-                <option value="Business Owner">Business Owner</option>
-                <option value="Student">Student</option>
+                <option value="Business Owner/Entrepreneur">Business Owner/Entrepreneur</option>
+                <option value="Social Media Influencer">Social Media Influencer</option>
+                <option value="Academic/Researcher">Academic/Researcher</option>
                 <option value="Retired">Retired</option>
-                <option value="Unemployed">Unemployed</option>
                 <option value="Other">Other</option>
             </select>
         </div>
@@ -319,31 +342,29 @@
             <label>Education Level *</label>
             <select id="education">
                 <option value="">Select education level</option>
-                <option value="Below 10th">Below 10th Standard</option>
-                <option value="10th Pass">10th Pass</option>
+                <option value="Below 12th">Below 12th Standard</option>
                 <option value="12th Pass">12th Pass</option>
                 <option value="Graduate">Graduate (Bachelor's Degree)</option>
                 <option value="Post Graduate">Post Graduate (Master's Degree)</option>
                 <option value="Doctorate">Doctorate (Ph.D.)</option>
-                <option value="Professional Degree">Professional Degree (Law/Medical/Engineering)</option>
+                <option value="Professional Degree">Professional Degree</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label>Location Type *</label>
-            <select id="location">
-                <option value="">Select location type</option>
-                <option value="Metropolitan City">Metropolitan City (Mumbai, Delhi, Bangalore, etc.)</option>
-                <option value="Tier 1 City">Tier 1 City</option>
-                <option value="Tier 2 City">Tier 2 City</option>
-                <option value="Tier 3 City">Tier 3 City</option>
-                <option value="Town">Town</option>
-                <option value="Rural Area">Rural Area</option>
+            <label>Daily Social Media Usage *</label>
+            <select id="socialMediaUsage">
+                <option value="">Select usage time</option>
+                <option value="Less than 1 hour">Less than 1 hour</option>
+                <option value="1-2 hours">1-2 hours</option>
+                <option value="2-4 hours">2-4 hours</option>
+                <option value="4-6 hours">4-6 hours</option>
+                <option value="More than 6 hours">More than 6 hours</option>
             </select>
         </div>
 
         <div class="section-title" style="margin-top: 40px;">
-            <div class="section-number" style="background: #138808;">2</div>
+            <div class="section-number" style="background: #764ba2;">2</div>
             <span>Survey Questions</span>
         </div>
 
@@ -353,7 +374,7 @@
     </div>
 
     <div id="thankYouScreen" class="thank-you-screen hidden">
-        <svg class="check-icon" fill="none" stroke="#138808" viewBox="0 0 24 24">
+        <svg class="check-icon" fill="none" stroke="#667eea" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <h2>Thank You for Your Response!</h2>
@@ -367,7 +388,7 @@
         <div class="content">
             <div class="results-header">
                 <h2>Survey Results</h2>
-                <p style="color: #666;">Analysis of Public Opinion on AI in Indian Judicial System</p>
+                <p style="color: #666;">Public Opinion on Moltbots and Digital Rights in India</p>
                 <div class="total-responses" id="totalResponses"></div>
             </div>
             <div id="chartsContainer"></div>
@@ -382,82 +403,82 @@
     const questions = [
         {
             id: 'q1',
-            text: 'How would you rate your awareness of the current Indian judicial system?',
+            text: 'How aware are you of the existence of bots on social media platforms?',
             options: ['Very aware', 'Somewhat aware', 'Neutral', 'Somewhat unaware', 'Not aware at all']
         },
         {
             id: 'q2',
-            text: 'Are you satisfied with the current speed of case resolution in Indian courts?',
-            options: ['Very satisfied', 'Satisfied', 'Neutral', 'Dissatisfied', 'Very dissatisfied']
+            text: 'Have you ever encountered or suspected bot activity on social media?',
+            options: ['Yes, frequently', 'Yes, occasionally', 'Unsure', 'Rarely', 'Never']
         },
         {
             id: 'q3',
-            text: 'How familiar are you with AI (Artificial Intelligence) technology?',
-            options: ['Very familiar', 'Somewhat familiar', 'Neutral', 'Not very familiar', 'Not at all familiar']
+            text: 'How concerned are you about bots spreading misinformation in India?',
+            options: ['Extremely concerned', 'Very concerned', 'Moderately concerned', 'Slightly concerned', 'Not concerned']
         },
         {
             id: 'q4',
-            text: 'Do you believe AI can make unbiased judicial decisions?',
+            text: 'Do you believe social media bots influence public opinion and political discourse in India?',
             options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
         },
         {
             id: 'q5',
-            text: 'Would you trust an AI system to handle your legal case?',
-            options: ['Definitely yes', 'Probably yes', 'Unsure', 'Probably no', 'Definitely no']
+            text: 'How confident are you in identifying bot accounts on social media?',
+            options: ['Very confident', 'Somewhat confident', 'Neutral', 'Not very confident', 'Not confident at all']
         },
         {
             id: 'q6',
-            text: 'How effective do you think AI would be in reducing case backlogs in Indian courts?',
-            options: ['Extremely effective', 'Very effective', 'Moderately effective', 'Slightly effective', 'Not effective']
-        },
-        {
-            id: 'q7',
-            text: 'Should AI be used for preliminary case analysis and categorization?',
+            text: 'Should social media platforms be held accountable for bot activity on their platforms?',
             options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
         },
         {
+            id: 'q7',
+            text: 'Do you think the Indian government is doing enough to regulate social media bots?',
+            options: ['More than enough', 'Adequate', 'Neutral', 'Not enough', 'Not at all']
+        },
+        {
             id: 'q8',
-            text: 'How concerned are you about AI making errors in legal judgments?',
-            options: ['Extremely concerned', 'Very concerned', 'Moderately concerned', 'Slightly concerned', 'Not concerned']
+            text: 'How important is transparency about bot activity from social media companies?',
+            options: ['Extremely important', 'Very important', 'Moderately important', 'Slightly important', 'Not important']
         },
         {
             id: 'q9',
-            text: 'Should AI-assisted judgments require human judge oversight?',
-            options: ['Always required', 'Usually required', 'Sometimes required', 'Rarely required', 'Not required']
+            text: 'Do you believe bots violate your digital rights as a social media user?',
+            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
         },
         {
             id: 'q10',
-            text: 'Do you think AI implementation would improve access to justice for common citizens?',
+            text: 'Should there be stricter penalties for those who deploy malicious bots?',
             options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
         },
         {
             id: 'q11',
-            text: 'How important is transparency in AI decision-making processes for judicial matters?',
-            options: ['Extremely important', 'Very important', 'Moderately important', 'Slightly important', 'Not important']
+            text: 'How effective do you think AI-based detection systems would be in identifying bots?',
+            options: ['Extremely effective', 'Very effective', 'Moderately effective', 'Slightly effective', 'Not effective']
         },
         {
             id: 'q12',
-            text: 'Would AI implementation reduce corruption in the judicial system?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
+            text: 'Would you support mandatory verification for all social media accounts to prevent bots?',
+            options: ['Strongly support', 'Support', 'Neutral', 'Oppose', 'Strongly oppose']
         },
         {
             id: 'q13',
-            text: 'Can AI understand the cultural and social context of cases in India?',
-            options: ['Definitely yes', 'Probably yes', 'Unsure', 'Probably no', 'Definitely no']
+            text: 'Do you believe bot activity affects the credibility of online information in India?',
+            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
         },
         {
             id: 'q14',
-            text: 'How likely are you to accept an AI-assisted judgment in your case?',
+            text: 'How likely are you to report suspected bot accounts on social media?',
             options: ['Very likely', 'Somewhat likely', 'Neutral', 'Somewhat unlikely', 'Very unlikely']
         },
         {
             id: 'q15',
-            text: 'What is your overall opinion on implementing AI in the Indian judicial system?',
-            options: ['Very positive', 'Positive', 'Neutral', 'Negative', 'Very negative']
+            text: 'Overall, how serious do you consider the threat of social media bots to digital democracy in India?',
+            options: ['Extremely serious', 'Very serious', 'Moderately serious', 'Slightly serious', 'Not serious']
         }
     ];
 
-    const colors = ['#ff9933', '#138808', '#000080', '#ffa500', '#8b4513'];
+    const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
 
     function initForm() {
         const container = document.getElementById('questionsContainer');
@@ -481,7 +502,7 @@
 
     function validateForm() {
         let isValid = true;
-        const personalFields = ['age', 'gender', 'occupation', 'education', 'location'];
+        const personalFields = ['age', 'gender', 'occupation', 'education', 'socialMediaUsage'];
         
         personalFields.forEach(field => {
             const el = document.getElementById(field);
@@ -518,7 +539,7 @@
             gender: document.getElementById('gender').value,
             occupation: document.getElementById('occupation').value,
             education: document.getElementById('education').value,
-            location: document.getElementById('location').value
+            socialMediaUsage: document.getElementById('socialMediaUsage').value
         };
 
         questions.forEach(q => {
@@ -528,7 +549,7 @@
 
         const responses = loadResponses();
         responses.push(formData);
-        sessionStorage.setItem('judicial_responses', JSON.stringify(responses));
+        sessionStorage.setItem('moltbot_responses', JSON.stringify(responses));
 
         document.getElementById('formScreen').classList.add('hidden');
         
@@ -540,7 +561,7 @@
     }
 
     function loadResponses() {
-        const stored = sessionStorage.getItem('judicial_responses');
+        const stored = sessionStorage.getItem('moltbot_responses');
         return stored ? JSON.parse(stored) : [];
     }
 
