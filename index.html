@@ -1,637 +1,512 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moltbots and Digital Rights Survey - India</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mixed Media Home | Personal Gallery</title>
+  <style>
+    :root {
+      --bg: #0f0d1c;
+      --panel: rgba(19, 16, 38, 0.76);
+      --ink: #f6f4ff;
+      --muted: #cbc5ec;
+      --accent: #ff5ca8;
+      --accent-2: #49e7ff;
+      --accent-3: #ffc14a;
+      --danger: #ff6d7c;
+      --success: #5bff9b;
+      --line: rgba(255, 255, 255, 0.2);
+    }
 
-```
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 20px;
-        min-height: 100vh;
+      font-family: "Inter", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(73, 231, 255, 0.2), transparent 35%),
+        radial-gradient(circle at 85% 18%, rgba(255, 92, 168, 0.18), transparent 35%),
+        radial-gradient(circle at 78% 80%, rgba(255, 193, 74, 0.2), transparent 30%),
+        var(--bg);
+      min-height: 100vh;
+      padding: 24px;
     }
 
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-        overflow: hidden;
+    .shell {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.35);
     }
 
-    .header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 40px;
-        text-align: center;
+    .hero {
+      padding: 44px 30px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
     }
 
-    .header h1 {
-        font-size: 28px;
-        margin-bottom: 10px;
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      top: -70px;
+      right: -50px;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      filter: blur(70px);
+      opacity: 0.45;
+      pointer-events: none;
     }
 
-    .header p {
-        font-size: 16px;
-        opacity: 0.95;
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 8px;
+      letter-spacing: 0.03em;
     }
 
-    .content {
-        padding: 40px;
+    .hero p {
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.55;
     }
 
-    .info-box {
-        background: #e8eaf6;
-        border-left: 4px solid #5e35b1;
-        padding: 15px;
-        margin-bottom: 30px;
-        border-radius: 4px;
+    .layout {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      gap: 0;
     }
 
-    .section-title {
-        display: flex;
-        align-items: center;
-        margin-bottom: 25px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
+    .control-panel {
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      background: rgba(8, 7, 16, 0.5);
     }
 
-    .section-number {
-        background: #667eea;
-        color: white;
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 15px;
-        font-weight: bold;
+    .display-panel {
+      padding: 24px;
     }
 
-    .form-group {
-        margin-bottom: 25px;
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
     }
 
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 600;
-        color: #333;
+    .card h2 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
     }
 
-    .form-group select,
-    .form-group input {
-        width: 100%;
-        padding: 12px;
-        border: 2px solid #ddd;
-        border-radius: 8px;
-        font-size: 15px;
-        transition: border-color 0.3s;
+    .note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
     }
 
-    .form-group select:focus,
-    .form-group input:focus {
-        outline: none;
-        border-color: #667eea;
+    .status {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: var(--muted);
     }
 
-    .question-box {
-        background: #f8f9fa;
-        padding: 25px;
-        margin-bottom: 25px;
-        border-radius: 8px;
-        border-left: 4px solid #667eea;
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.84rem;
+      margin-bottom: 12px;
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    .question-text {
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 15px;
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 10px var(--danger);
     }
 
-    .radio-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    .dot.live {
+      background: var(--success);
+      box-shadow: 0 0 10px var(--success);
     }
 
-    .radio-option {
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        background: white;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background 0.2s;
+    form {
+      display: grid;
+      gap: 10px;
     }
 
-    .radio-option:hover {
-        background: #e8eaf6;
+    label {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 2px;
     }
 
-    .radio-option input[type="radio"] {
-        width: 18px;
-        height: 18px;
-        margin-right: 12px;
-        cursor: pointer;
-        accent-color: #667eea;
+    input,
+    textarea,
+    select,
+    button {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink);
+      padding: 10px 12px;
+      font: inherit;
     }
 
-    .submit-btn {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 15px 40px;
-        border: none;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-        display: block;
-        margin: 30px auto 0;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        transition: transform 0.2s;
+    textarea {
+      min-height: 85px;
+      resize: vertical;
     }
 
-    .submit-btn:hover {
-        transform: translateY(-2px);
+    button {
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
-    .thank-you-screen,
-    .results-screen {
-        text-align: center;
-        padding: 60px 40px;
+    button:hover {
+      transform: translateY(-1px);
     }
 
-    .check-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 20px;
+    .btn-accent {
+      background: linear-gradient(120deg, var(--accent), #b34cff);
+      border: none;
     }
 
-    .thank-you-screen h2 {
-        font-size: 28px;
-        color: #333;
-        margin-bottom: 15px;
+    .btn-muted {
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .response-count {
-        font-size: 18px;
-        color: #666;
-        margin-top: 20px;
+    .tiny {
+      font-size: 0.79rem;
+      color: var(--muted);
+      line-height: 1.4;
     }
 
-    .results-header {
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin-bottom: 30px;
-        text-align: center;
+    .gallery-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .results-header h2 {
-        font-size: 32px;
-        color: #333;
-        margin-bottom: 10px;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
     }
 
-    .total-responses {
-        font-size: 20px;
-        color: #667eea;
-        font-weight: bold;
-        margin-top: 10px;
+    .art-piece {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+      position: relative;
     }
 
-    .chart-container {
-        background: white;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        margin-bottom: 25px;
+    .art-piece::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(315deg, rgba(73, 231, 255, 0.06), transparent 45%);
     }
 
-    .chart-title {
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 20px;
+    .piece-media {
+      width: 100%;
+      aspect-ratio: 16/10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.3);
+      display: grid;
+      place-content: center;
+      text-align: center;
+      padding: 12px;
     }
 
-    .clear-btn {
-        background: #667eea;
-        color: white;
-        padding: 12px 30px;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 30px;
+    .piece-media img,
+    .piece-media iframe,
+    .piece-media audio {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
     }
 
-    .clear-btn:hover {
-        background: #5568d3;
+    .piece-content {
+      padding: 12px;
     }
 
-    .error {
-        border-color: #f44336 !important;
+    .piece-content h3 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .piece-type {
+      display: inline-block;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--accent-2);
+      margin-bottom: 8px;
+    }
+
+    .piece-content p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+
+    .piece-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .piece-meta a {
+      color: var(--accent-3);
+      font-size: 0.84rem;
+      text-decoration: none;
+    }
+
+    .empty {
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 30px;
+      text-align: center;
+      color: var(--muted);
     }
 
     .hidden {
-        display: none;
+      display: none;
     }
 
-    .definition-box {
-        background: #fff3cd;
-        border-left: 4px solid #ffc107;
-        padding: 15px;
-        margin-bottom: 25px;
-        border-radius: 4px;
-        font-size: 14px;
-    }
+    @media (max-width: 920px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
 
-    .definition-box strong {
-        display: block;
-        margin-bottom: 5px;
-        color: #856404;
+      .control-panel {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
     }
-</style>
-```
-
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Moltbots and the Public</h1>
-            <p>A Study on Awareness, Accountability, and Digital Rights in India</p>
+  <main class="shell">
+    <header class="hero">
+      <h1>My Mixed Media Home Page</h1>
+      <p>A living collage of images, documents, links, and audio. Visitors can explore the artwork freely, while only I can log in and publish new pieces.</p>
+    </header>
+
+    <section class="layout">
+      <aside class="control-panel">
+        <div class="card">
+          <div class="badge">
+            <span class="dot" id="liveDot"></span>
+            <span id="loginState">Viewer mode</span>
+          </div>
+          <h2>Creator Login</h2>
+          <p class="note">Enter your private login ID and PIN to unlock publishing controls.</p>
+          <form id="loginForm">
+            <label for="loginId">Login ID</label>
+            <input id="loginId" type="text" placeholder="your-login-id" required />
+            <label for="loginPin">PIN</label>
+            <input id="loginPin" type="password" placeholder="••••" required />
+            <button class="btn-accent" type="submit">Sign in</button>
+          </form>
+          <button id="logoutBtn" class="btn-muted hidden" type="button">Sign out</button>
+          <p class="tiny" style="margin-top: 10px;">Default credentials are in script constants and can be changed anytime.</p>
+          <p class="status" id="authMessage"></p>
         </div>
 
-```
-    <div id="formScreen" class="content">
-        <div class="info-box">
-            <strong>Note:</strong> This survey collects public opinion on Moltbots (social media bots) and their impact on digital rights in India. 
-            All responses are anonymous and confidential. Please answer all questions honestly.
-        </div>
+        <div class="card hidden" id="publishCard">
+          <h2>Post New Work</h2>
+          <form id="postForm">
+            <label for="title">Title</label>
+            <input id="title" type="text" maxlength="80" required />
 
-        <div class="definition-box">
-            <strong>What are Moltbots?</strong>
-            Moltbots are automated social media accounts (bots) that can spread information, manipulate opinions, and influence public discourse on platforms like Twitter, Facebook, and Instagram.
-        </div>
-
-        <div class="section-title">
-            <div class="section-number">1</div>
-            <span>Personal Information</span>
-        </div>
-
-        <div class="form-group">
-            <label>Age Group *</label>
-            <select id="age">
-                <option value="">Select age group</option>
-                <option value="18-25">18-25</option>
-                <option value="26-35">26-35</option>
-                <option value="36-45">36-45</option>
-                <option value="46-55">46-55</option>
-                <option value="56-65">56-65</option>
-                <option value="65+">65+</option>
+            <label for="type">Media type</label>
+            <select id="type" required>
+              <option value="image">Picture</option>
+              <option value="document">Document</option>
+              <option value="link">Link</option>
+              <option value="audio">Audio</option>
             </select>
+
+            <label for="url">Public URL</label>
+            <input id="url" type="url" placeholder="https://..." required />
+
+            <label for="description">Description</label>
+            <textarea id="description" maxlength="240" placeholder="What is this work about?"></textarea>
+
+            <button class="btn-accent" type="submit">Publish to gallery</button>
+          </form>
+          <p class="tiny" style="margin-top: 10px;">Tip: Use cloud-hosted URLs (Drive, Dropbox, YouTube, SoundCloud, etc.) for best compatibility.</p>
         </div>
+      </aside>
 
-        <div class="form-group">
-            <label>Gender *</label>
-            <select id="gender">
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Non-binary">Non-binary</option>
-                <option value="Prefer not to say">Prefer not to say</option>
-            </select>
+      <section class="display-panel">
+        <div class="gallery-head">
+          <h2>Public Gallery</h2>
+          <span class="tiny" id="pieceCount">0 pieces published</span>
         </div>
+        <div id="gallery" class="gallery-grid"></div>
+      </section>
+    </section>
+  </main>
 
-        <div class="form-group">
-            <label>Occupation *</label>
-            <select id="occupation">
-                <option value="">Select occupation</option>
-                <option value="Student">Student</option>
-                <option value="IT/Tech Professional">IT/Tech Professional</option>
-                <option value="Media/Journalism">Media/Journalism</option>
-                <option value="Government Employee">Government Employee</option>
-                <option value="Private Sector Employee">Private Sector Employee</option>
-                <option value="Business Owner/Entrepreneur">Business Owner/Entrepreneur</option>
-                <option value="Social Media Influencer">Social Media Influencer</option>
-                <option value="Academic/Researcher">Academic/Researcher</option>
-                <option value="Retired">Retired</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
+  <script>
+    const OWNER_LOGIN_ID = "myartadmin";
+    const OWNER_PIN = "2811";
+    const STORAGE_KEY = "mixed_media_posts_v1";
 
-        <div class="form-group">
-            <label>Education Level *</label>
-            <select id="education">
-                <option value="">Select education level</option>
-                <option value="Below 12th">Below 12th Standard</option>
-                <option value="12th Pass">12th Pass</option>
-                <option value="Graduate">Graduate (Bachelor's Degree)</option>
-                <option value="Post Graduate">Post Graduate (Master's Degree)</option>
-                <option value="Doctorate">Doctorate (Ph.D.)</option>
-                <option value="Professional Degree">Professional Degree</option>
-            </select>
-        </div>
+    const loginForm = document.getElementById("loginForm");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const publishCard = document.getElementById("publishCard");
+    const postForm = document.getElementById("postForm");
+    const gallery = document.getElementById("gallery");
+    const authMessage = document.getElementById("authMessage");
+    const loginState = document.getElementById("loginState");
+    const liveDot = document.getElementById("liveDot");
+    const pieceCount = document.getElementById("pieceCount");
 
-        <div class="form-group">
-            <label>Daily Social Media Usage *</label>
-            <select id="socialMediaUsage">
-                <option value="">Select usage time</option>
-                <option value="Less than 1 hour">Less than 1 hour</option>
-                <option value="1-2 hours">1-2 hours</option>
-                <option value="2-4 hours">2-4 hours</option>
-                <option value="4-6 hours">4-6 hours</option>
-                <option value="More than 6 hours">More than 6 hours</option>
-            </select>
-        </div>
+    let isOwnerLoggedIn = false;
 
-        <div class="section-title" style="margin-top: 40px;">
-            <div class="section-number" style="background: #764ba2;">2</div>
-            <span>Survey Questions</span>
-        </div>
+    function loadPosts() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }
 
-        <div id="questionsContainer"></div>
+    function savePosts(posts) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+    }
 
-        <button class="submit-btn" onclick="submitForm()">Submit Survey</button>
-    </div>
+    function escapeHtml(value) {
+      const map = {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"};
+      return value.replace(/[&<>"']/g, m => map[m]);
+    }
 
-    <div id="thankYouScreen" class="thank-you-screen hidden">
-        <svg class="check-icon" fill="none" stroke="#667eea" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <h2>Thank You for Your Response!</h2>
-        <p style="color: #666; font-size: 16px; margin-top: 15px;">
-            Your response has been recorded successfully.
-        </p>
-        <p class="response-count" id="responseStatus"></p>
-    </div>
+    function mediaTemplate(post) {
+      if (post.type === "image") {
+        return `<img src="${post.url}" alt="${escapeHtml(post.title)}" loading="lazy">`;
+      }
+      if (post.type === "audio") {
+        return `<audio controls src="${post.url}">Your browser does not support audio.</audio>`;
+      }
+      if (post.type === "document") {
+        return `<div class="note">📄 Document preview unavailable<br>Open with the link below.</div>`;
+      }
+      return `<div class="note">🔗 External link artwork</div>`;
+    }
 
-    <div id="resultsScreen" class="hidden">
-        <div class="content">
-            <div class="results-header">
-                <h2>Survey Results</h2>
-                <p style="color: #666;">Public Opinion on Moltbots and Digital Rights in India</p>
-                <div class="total-responses" id="totalResponses"></div>
+    function renderPosts() {
+      const posts = loadPosts();
+      pieceCount.textContent = `${posts.length} piece${posts.length === 1 ? "" : "s"} published`;
+
+      if (!posts.length) {
+        gallery.innerHTML = `<div class="empty">No work published yet. Check back soon for the first mixed-media drop.</div>`;
+        return;
+      }
+
+      gallery.innerHTML = posts
+        .slice()
+        .reverse()
+        .map(post => `
+          <article class="art-piece">
+            <div class="piece-media">${mediaTemplate(post)}</div>
+            <div class="piece-content">
+              <span class="piece-type">${escapeHtml(post.type)}</span>
+              <h3>${escapeHtml(post.title)}</h3>
+              <p>${escapeHtml(post.description || "No caption provided.")}</p>
+              <div class="piece-meta">
+                <small>${new Date(post.createdAt).toLocaleDateString()}</small>
+                <a href="${post.url}" target="_blank" rel="noopener noreferrer">Open</a>
+              </div>
             </div>
-            <div id="chartsContainer"></div>
-            <div style="text-align: center;">
-                <button class="clear-btn" onclick="clearAllData()">Clear All Data & Start Over</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-    const questions = [
-        {
-            id: 'q1',
-            text: 'How aware are you of the existence of bots on social media platforms?',
-            options: ['Very aware', 'Somewhat aware', 'Neutral', 'Somewhat unaware', 'Not aware at all']
-        },
-        {
-            id: 'q2',
-            text: 'Have you ever encountered or suspected bot activity on social media?',
-            options: ['Yes, frequently', 'Yes, occasionally', 'Unsure', 'Rarely', 'Never']
-        },
-        {
-            id: 'q3',
-            text: 'How concerned are you about bots spreading misinformation in India?',
-            options: ['Extremely concerned', 'Very concerned', 'Moderately concerned', 'Slightly concerned', 'Not concerned']
-        },
-        {
-            id: 'q4',
-            text: 'Do you believe social media bots influence public opinion and political discourse in India?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
-        },
-        {
-            id: 'q5',
-            text: 'How confident are you in identifying bot accounts on social media?',
-            options: ['Very confident', 'Somewhat confident', 'Neutral', 'Not very confident', 'Not confident at all']
-        },
-        {
-            id: 'q6',
-            text: 'Should social media platforms be held accountable for bot activity on their platforms?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
-        },
-        {
-            id: 'q7',
-            text: 'Do you think the Indian government is doing enough to regulate social media bots?',
-            options: ['More than enough', 'Adequate', 'Neutral', 'Not enough', 'Not at all']
-        },
-        {
-            id: 'q8',
-            text: 'How important is transparency about bot activity from social media companies?',
-            options: ['Extremely important', 'Very important', 'Moderately important', 'Slightly important', 'Not important']
-        },
-        {
-            id: 'q9',
-            text: 'Do you believe bots violate your digital rights as a social media user?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
-        },
-        {
-            id: 'q10',
-            text: 'Should there be stricter penalties for those who deploy malicious bots?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
-        },
-        {
-            id: 'q11',
-            text: 'How effective do you think AI-based detection systems would be in identifying bots?',
-            options: ['Extremely effective', 'Very effective', 'Moderately effective', 'Slightly effective', 'Not effective']
-        },
-        {
-            id: 'q12',
-            text: 'Would you support mandatory verification for all social media accounts to prevent bots?',
-            options: ['Strongly support', 'Support', 'Neutral', 'Oppose', 'Strongly oppose']
-        },
-        {
-            id: 'q13',
-            text: 'Do you believe bot activity affects the credibility of online information in India?',
-            options: ['Strongly agree', 'Agree', 'Neutral', 'Disagree', 'Strongly disagree']
-        },
-        {
-            id: 'q14',
-            text: 'How likely are you to report suspected bot accounts on social media?',
-            options: ['Very likely', 'Somewhat likely', 'Neutral', 'Somewhat unlikely', 'Very unlikely']
-        },
-        {
-            id: 'q15',
-            text: 'Overall, how serious do you consider the threat of social media bots to digital democracy in India?',
-            options: ['Extremely serious', 'Very serious', 'Moderately serious', 'Slightly serious', 'Not serious']
-        }
-    ];
-
-    const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
-
-    function initForm() {
-        const container = document.getElementById('questionsContainer');
-        questions.forEach((q, idx) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.className = 'question-box';
-            questionDiv.innerHTML = `
-                <div class="question-text">Question ${idx + 1}: ${q.text} *</div>
-                <div class="radio-group" id="${q.id}">
-                    ${q.options.map(option => `
-                        <label class="radio-option">
-                            <input type="radio" name="${q.id}" value="${option}">
-                            <span>${option}</span>
-                        </label>
-                    `).join('')}
-                </div>
-            `;
-            container.appendChild(questionDiv);
-        });
+          </article>
+        `)
+        .join("");
     }
 
-    function validateForm() {
-        let isValid = true;
-        const personalFields = ['age', 'gender', 'occupation', 'education', 'socialMediaUsage'];
-        
-        personalFields.forEach(field => {
-            const el = document.getElementById(field);
-            if (!el.value) {
-                el.classList.add('error');
-                isValid = false;
-            } else {
-                el.classList.remove('error');
-            }
-        });
-
-        questions.forEach(q => {
-            const selected = document.querySelector(`input[name="${q.id}"]:checked`);
-            const container = document.getElementById(q.id);
-            if (!selected) {
-                container.style.border = '2px solid #f44336';
-                isValid = false;
-            } else {
-                container.style.border = 'none';
-            }
-        });
-
-        return isValid;
+    function setAuthUi(loggedIn) {
+      isOwnerLoggedIn = loggedIn;
+      publishCard.classList.toggle("hidden", !loggedIn);
+      logoutBtn.classList.toggle("hidden", !loggedIn);
+      loginForm.classList.toggle("hidden", loggedIn);
+      loginState.textContent = loggedIn ? "Creator mode" : "Viewer mode";
+      liveDot.classList.toggle("live", loggedIn);
     }
 
-    function submitForm() {
-        if (!validateForm()) {
-            alert('Please answer all questions before submitting.');
-            return;
-        }
+    loginForm.addEventListener("submit", event => {
+      event.preventDefault();
+      const loginId = document.getElementById("loginId").value.trim();
+      const loginPin = document.getElementById("loginPin").value.trim();
 
-        const formData = {
-            age: document.getElementById('age').value,
-            gender: document.getElementById('gender').value,
-            occupation: document.getElementById('occupation').value,
-            education: document.getElementById('education').value,
-            socialMediaUsage: document.getElementById('socialMediaUsage').value
-        };
+      if (loginId === OWNER_LOGIN_ID && loginPin === OWNER_PIN) {
+        setAuthUi(true);
+        authMessage.textContent = "Welcome back. You can publish now.";
+        authMessage.style.color = "var(--success)";
+        loginForm.reset();
+      } else {
+        authMessage.textContent = "Invalid login ID or PIN.";
+        authMessage.style.color = "var(--danger)";
+      }
+    });
 
-        questions.forEach(q => {
-            const selected = document.querySelector(`input[name="${q.id}"]:checked`);
-            formData[q.id] = selected ? selected.value : '';
-        });
+    logoutBtn.addEventListener("click", () => {
+      setAuthUi(false);
+      authMessage.textContent = "Signed out. Gallery remains public.";
+      authMessage.style.color = "var(--muted)";
+    });
 
-        const responses = loadResponses();
-        responses.push(formData);
-        sessionStorage.setItem('moltbot_responses', JSON.stringify(responses));
+    postForm.addEventListener("submit", event => {
+      event.preventDefault();
+      if (!isOwnerLoggedIn) {
+        return;
+      }
 
-        document.getElementById('formScreen').classList.add('hidden');
-        
-        if (responses.length >= 3) {
-            showResults();
-        } else {
-            showThankYou(responses.length);
-        }
-    }
+      const post = {
+        title: document.getElementById("title").value.trim(),
+        type: document.getElementById("type").value,
+        url: document.getElementById("url").value.trim(),
+        description: document.getElementById("description").value.trim(),
+        createdAt: new Date().toISOString()
+      };
 
-    function loadResponses() {
-        const stored = sessionStorage.getItem('moltbot_responses');
-        return stored ? JSON.parse(stored) : [];
-    }
+      const posts = loadPosts();
+      posts.push(post);
+      savePosts(posts);
+      postForm.reset();
+      renderPosts();
+      authMessage.textContent = "Published successfully.";
+      authMessage.style.color = "var(--success)";
+    });
 
-    function showThankYou(count) {
-        document.getElementById('thankYouScreen').classList.remove('hidden');
-        document.getElementById('responseStatus').textContent = 
-            `We need ${3 - count} more response(s) before displaying results. Current: ${count}/3`;
-    }
-
-    function showResults() {
-        const responses = loadResponses();
-        document.getElementById('resultsScreen').classList.remove('hidden');
-        document.getElementById('totalResponses').textContent = `Total Responses: ${responses.length}`;
-        
-        const container = document.getElementById('chartsContainer');
-        container.innerHTML = '';
-
-        questions.forEach((q, idx) => {
-            const chartDiv = document.createElement('div');
-            chartDiv.className = 'chart-container';
-            chartDiv.innerHTML = `
-                <div class="chart-title">Question ${idx + 1}: ${q.text}</div>
-                <canvas id="chart${idx}"></canvas>
-            `;
-            container.appendChild(chartDiv);
-
-            const counts = {};
-            q.options.forEach(opt => counts[opt] = 0);
-            responses.forEach(r => {
-                if (r[q.id]) counts[r[q.id]]++;
-            });
-
-            new Chart(document.getElementById(`chart${idx}`), {
-                type: 'bar',
-                data: {
-                    labels: q.options,
-                    datasets: [{
-                        label: 'Number of Responses',
-                        data: q.options.map(opt => counts[opt]),
-                        backgroundColor: colors,
-                        borderColor: colors.map(c => c),
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                stepSize: 1
-                            }
-                        }
-                    }
-                }
-            });
-        });
-    }
-
-    function clearAllData() {
-        if (confirm('Are you sure you want to clear all survey data and start over?')) {
-            sessionStorage.clear();
-            location.reload();
-        }
-    }
-
-    initForm();
-</script>
-```
-
+    renderPosts();
+    setAuthUi(false);
+  </script>
 </body>
 </html>
